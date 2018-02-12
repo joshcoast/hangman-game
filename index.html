@@ -6,10 +6,18 @@
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
-	<script src="javascript/main.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
 </head>
-<body>
-	
+<body id="main" class="gameintro">
+	<h1>Hangman</h1>
+	<p id="intro">Press any key to get started!</p>
+	<div id="gameroom">
+		<ul id="letterTiles">
+		</ul>
+		<h2>Letters Played</h2>
+		<ul id="playedLettersDisplay">
+		</ul>
+	</div>
+	<script src="./assets/javascript/main.js"></script>
 </body>
 </html>
