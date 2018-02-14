@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	  crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
 </head>
+
 <body id="main" class="gameintro">
-	<h1>Hangman</h1>
-	<p id="intro">Press any key to get started!</p>
-	<div id="gameroom">
-		<ul id="letterTiles">
-		</ul>
-		<h2>Letters Played</h2>
-		<ul id="playedLettersDisplay">
-		</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Hangman</h1>
+				<p id="intro">Press any key to get started!</p>
+				<div id="gameroom">
+					<h2>Current Word</h2>
+					<ul id="letterTiles">
+					</ul>
+					<h2>Letters Played</h2>
+					<ul id="playedLettersDisplay">
+					</ul>
+					<h2>Number of Guesses Remaining</h2>
+					<p id="turnsTaken"></p>
+					<p id="alertBox"></p>
+					<h2>Wins!</h2>
+					<p id="winRecord">0</p>
+					<h2>Losses :(</h2>
+					<p id="loseRecord">0</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="./assets/javascript/main.js"></script>
 </body>
+
 </html>

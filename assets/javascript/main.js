@@ -6,6 +6,8 @@ var playedLetters = [];
 var loseRecord = 0;
 var winRecord = 0;
 var winningLetters = [];
+var winningMatch = [];
+var forTheWin = false;
 
 
 
@@ -17,56 +19,75 @@ document.onkeypress = function (event) {
 		//remove intro screen
 		var sel = document.getElementById("intro");
 		sel.remove(1);
-		//gamePlay()
 		setBoard();
-	} else {}
+	}
 };
 
 // Setup Board
 function setBoard() {
-	// Randomly pic a word form an array
+
+	//reset variables
+	turnsTaken = 0;
+	wordInPlayLetters = [];
+	playedLetters = [];
+	winningLetters = []
+	winningMatch = []
+	forTheWin = false;
+
+	//Clear old Letter Tiles and Letters Played lists
+	removeChildElements(document.getElementById("letterTiles"));
+	removeChildElements(document.getElementById("playedLettersDisplay"));
+
+	// Randomly pic a new word form the wordList
 	var wordInPlay = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(wordInPlay);
 	console.log("---------");
 
-	// separate out word letters into an array
+	// Separate wordInPlay letters into wordInPlayLetters array
 	for (var i = 0; i < wordInPlay.length; i++) {
 		wordInPlayLetters.push(wordInPlay.charAt(i));
 	}
-
+	
+	// Create the placeHolder tiles
 	for (var i = 0; i < wordInPlayLetters.length; i++) {
-		var listItem = document.createElement("LI");
+		var listItem = document.createElement("li");
 		var placeHolder = document.createTextNode("_");
 		listItem.appendChild(placeHolder);
 		document.getElementById("letterTiles").appendChild(listItem);
 	}
+
+	document.getElementById("turnsTaken").innerHTML = numberOfTurns;
+
 	gamePlay()
+}
+
+// Removes all Child elements
+function removeChildElements(rootEl) {
+	while ( rootEl.firstChild ) {
+		rootEl.removeChild( rootEl.firstChild );
+	}
 }
 
 function gamePlay() {
 	// Get the user input and process 
 	document.onkeypress = function (event) {
 		userGuess = event.key;
-		if (turnsTaken < numberOfTurns) {
-			// Find out if the letter has already been played
-			if (playedLetters.includes(userGuess)) {
-				//Display message that letter has been played already
-				letterAlreadyPlayed();
-			} else {
-				//Keep track of played letters and display
-				trackPlayedLetters()
-				if (wordInPlayLetters.indexOf(userGuess) > -1) {
-					//Guess was right
-					correctGuess()
-				} else {
-					// No Match
-					incorrectGuess();
-				}
-			}
+		// Find out if the letter has already been played
+		if (playedLetters.includes(userGuess)) {
+			//Display message that letter has been played already
+			letterAlreadyPlayed();
 		} else {
-			// Game is over
-			endGame();
+			//Keep track of played letters and display
+			trackPlayedLetters()
+			if (wordInPlayLetters.indexOf(userGuess) > -1) {
+				//Guess was right
+				correctGuess();
+			} else {
+				// No Match
+				incorrectGuess();
+			}
 		}
+		document.getElementById("turnsTaken").innerHTML = numberOfTurns - turnsTaken;
 	}
 
 	function letterAlreadyPlayed() {
@@ -74,7 +95,6 @@ function gamePlay() {
 	}
 
 	function trackPlayedLetters() {
-		turnsTaken = turnsTaken + 1;
 		playedLetters.push(userGuess);
 		//Add letter to played letters display
 		var listItem = document.createElement("LI");
@@ -85,40 +105,50 @@ function gamePlay() {
 	}
 
 	function correctGuess() {
-		if (turnsTaken >= 0 ) {
-			// You can't have negative turns
-			turnsTaken = turnsTaken + -1;
-		}
 		// Get the ul list that holds the word tiles
 		var letterTilesList = document.getElementById('letterTiles');
 		// Get an array of those list items so we can loop though and replace the _ with the userGuess
-		var letterTilesItems = letterTilesList.getElementsByTagName('li');		
+		var letterTilesItems = letterTilesList.getElementsByTagName('li');
+		// Loop through wordInPlayLetters and replace the ones that match the userGuess
 		for (var i = 0; i < wordInPlayLetters.length; i++) {
-			if (wordInPlayLetters[i] ==  userGuess) {
+			if (wordInPlayLetters[i] == userGuess) {
 				letterTilesItems[i].innerHTML = userGuess;
+				winningMatch[i] = userGuess;
 			}
 		}
-		console.log(userGuess + " is a match correctGuess()");
+		if (winningMatch.toString() === wordInPlayLetters.toString()) {
+			gameWon();
+		}
+
+		// Split takes a sting makes into an array
+
 	}
 
 	function incorrectGuess() {
-		console.log(userGuess + " does not match -- incorrectGuess()");
+		turnsTaken = turnsTaken + 1;
+		if (turnsTaken === numberOfTurns) {
+			gamelost();
+		}
 	}
 
-	function endGame() {
+	function gameWon() {
+		document.onkeypress = undefined;
+		winRecord = winRecord + 1;
+		document.querySelector("#winRecord").innerHTML = winRecord;
+		document.querySelector("#alertBox").innerHTML = "Winner Winner Chicken Dinner!"
+		setBoard();
+	}
+
+	function gamelost() {
 		// Stop gamePlay()'s onkeypress from running
 		document.onkeypress = undefined;
+		loseRecord = loseRecord + 1;
+		document.querySelector("#loseRecord").innerHTML = loseRecord;
 		// Alert 
-		console.log("Game Over");
+		document.getElementById("alertBox").innerHTML = "Loser Loser Such a Snoozer!";
+		setBoard();
 	}
 
-
-	// for (i=0; i < numberOfTurns; i++ )
-
-	// Get the user input. 
-	// userKey
-
-	// If letter is already played, display "you already played X, choose a new letter" return to loop. 
 
 	// else if letter matches
 	/*
