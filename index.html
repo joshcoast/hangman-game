@@ -6,35 +6,61 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Page Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	  crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/normalize.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
 </head>
 
 <body id="main" class="gameintro">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1>Hangman</h1>
-				<p id="intro">Press any key to get started!</p>
-				<div id="gameroom">
-					<h2>Current Word</h2>
-					<ul id="letterTiles">
-					</ul>
-					<h2>Letters Played</h2>
-					<ul id="playedLettersDisplay">
-					</ul>
-					<h2>Number of Guesses Remaining</h2>
-					<p id="turnsTaken"></p>
-					<p id="alertBox"></p>
+	<nav class="menu-bar">
+		<div class="menu-inner">
+			<ul class="menulinks">
+				<li>
+					<img class="apple-logo" src="assets/images/apple.svg" alt="">
+				</li>
+				<li>Finder</li>
+				<li>File</li>
+				<li>Edit</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	<main>
+		<div id="intro" class="intro">
+			<div class="intro-message">
+				<img src="assets/images/happy-mac.png">
+				<p>Press any key to get started!</p>
+			</div>
+		</div>
+		<div id="gameroom" class="game-room">
+			<div class="box count-down-box">
+				<h2>CountDown =
+					<span id="turnsTaken"></span>
+				</h2>
+			</div>
+			<div class="current-word-box box">
+				<h2>Current Word</h2>
+				<ul id="letterTiles" class="letter-tiles">
+				</ul>
+			</div>
+			<div class="letters-played-box box">
+				<h2>Letters Played</h2>
+				<ul id="playedLettersDisplay" class="played-letters">
+				</ul>
+			</div>
+			<p id="alertMessage" class="alert-message"></p>
+			<div class="box score-box">
+				<div class="wins-box">
 					<h2>Wins!</h2>
 					<p id="winRecord">0</p>
+				</div>
+				<div class="losses-box">
 					<h2>Losses :(</h2>
 					<p id="loseRecord">0</p>
 				</div>
 			</div>
 		</div>
-	</div>
+	</main>
 	<script src="./assets/javascript/main.js"></script>
 </body>
 

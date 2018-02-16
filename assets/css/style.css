@@ -1,0 +1,144 @@
+/*-- views --*/
+.gameintro .game-room {
+	display: none;
+}
+.gamerunning .game-room {
+	display: block;
+}
+
+/*-- global --*/
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+body {
+	background-color: #262626;
+	padding: 20px;
+	font-family: 'Ropa Sans', sans-serif;
+}
+main {
+	background: white;
+}
+.box {
+	background:white;
+	padding: 5px;
+	margin-bottom: 5px;
+	border: 2px solid black;
+}
+.box::after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+/*-- typography --*/
+h2 {
+	margin: 0;
+}
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+/*-- Apple menu bar --*/
+.menu-bar {
+	border-bottom: 1px solid black;
+	background: #262626;
+	font-weight: 700;
+}
+.menu-inner {
+	border-radius: 10px 10px 0 0;
+	background-color: #f7f7f7;
+	padding: 10px 20px;
+	height: 44px;
+}
+.menu-inner::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.menulinks {
+	margin: 0;
+	padding: 0;
+}
+.menulinks li {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 3px 5px 0 5px;
+}
+.menulinks li:first-child {
+	padding: 0 10px 0 0;
+}
+.apple-logo {
+	width: 15px;
+	height: auto;
+}
+
+/*-- Main Content --*/
+
+main {
+	padding: 20px;
+	border-radius: 0 0 20px 20px;
+	background-color: #aaaaaa;
+}
+
+/*-- intro screen --*/
+
+.intro,
+.game-room {
+	min-height: calc(100vh - 144px);
+	text-align: center;
+}
+
+.intro-message {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+
+.intro-message img {
+	width: 50px;
+}
+
+/*-- Play screen --*/
+
+.count-down-box h2 {
+	font-size: 1rem;
+}
+
+.letter-tiles li,
+.played-letters li {
+	display: block;
+	float: left;
+}
+
+.letter-tiles li {
+	padding: 5px;
+	font-size: 1.5em;
+}
+
+.played-letters li {
+	padding: 5px;
+	margin: 5px;
+	background: black;
+	color: white;
+}
+
+.alert-message span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.score-box {
+	display: flex;
+}
+.score-box > div {
+	flex: 1 1 auto;
+}
+
+
+

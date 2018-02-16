@@ -1,4 +1,5 @@
 var wordList = ["eloquent", "javascript", "second", "edition"];
+var wordInPlay;
 var wordInPlayLetters = [];
 var numberOfTurns = 5;
 var turnsTaken = 0;
@@ -7,7 +8,7 @@ var loseRecord = 0;
 var winRecord = 0;
 var winningLetters = [];
 var winningMatch = [];
-var forTheWin = false;
+//var forTheWin = false;
 
 
 
@@ -16,11 +17,14 @@ document.onkeypress = function (event) {
 	// Push any key to start display -> "Press any key to get started!" -> run gameStart()
 	if (document.body.classList.contains("gameintro")) {
 		document.body.classList.replace("gameintro", "gamerunning");
-		//remove intro screen
-		var sel = document.getElementById("intro");
-		sel.remove(1);
+
+		//Remove intro screen
+		var intro = document.getElementById("intro");
+		intro.remove(1);
 		setBoard();
 	}
+	var audio = new Audio('assets/sounds/Startup2.wav');
+  audio.play();
 };
 
 // Setup Board
@@ -32,16 +36,17 @@ function setBoard() {
 	playedLetters = [];
 	winningLetters = []
 	winningMatch = []
-	forTheWin = false;
+	//forTheWin = false;
 
 	//Clear old Letter Tiles and Letters Played lists
 	removeChildElements(document.getElementById("letterTiles"));
 	removeChildElements(document.getElementById("playedLettersDisplay"));
 
 	// Randomly pic a new word form the wordList
-	var wordInPlay = wordList[Math.floor(Math.random() * wordList.length)];
+	wordInPlay = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(wordInPlay);
 	console.log("---------");
+	
 
 	// Separate wordInPlay letters into wordInPlayLetters array
 	for (var i = 0; i < wordInPlay.length; i++) {
@@ -91,6 +96,7 @@ function gamePlay() {
 	}
 
 	function letterAlreadyPlayed() {
+		document.querySelector("#alertMessage").innerHTML = userGuess + " has already been played";
 		console.log(userGuess + " has already been played -- letterAlreadyPlayed()");
 	}
 
@@ -135,7 +141,7 @@ function gamePlay() {
 		document.onkeypress = undefined;
 		winRecord = winRecord + 1;
 		document.querySelector("#winRecord").innerHTML = winRecord;
-		document.querySelector("#alertBox").innerHTML = "Winner Winner Chicken Dinner!"
+		document.querySelector("#alertMessage").innerHTML = "<p>You got it, the word was <span>" + wordInPlay + "</span>. <br> Winner Winner Chicken Dinner!</p>"
 		setBoard();
 	}
 
@@ -145,39 +151,8 @@ function gamePlay() {
 		loseRecord = loseRecord + 1;
 		document.querySelector("#loseRecord").innerHTML = loseRecord;
 		// Alert 
-		document.getElementById("alertBox").innerHTML = "Loser Loser Such a Snoozer!";
+		document.getElementById("alertMessage").innerHTML = "<p>The word was <span>" + wordInPlay + "</span>. <br>Loser Loser Such a Snoozer!</p>";
+		console.log("here " + wordInPlay + " end");
 		setBoard();
 	}
-
-
-	// else if letter matches
-	/*
-	if (wordInPlay.indexOf(userKey) > -1)
-	{
-		// replace that letter in the "_" display
-		// Add 1 to winningLetters var
-	}
-	*/
-
-	// else letter doesn't match
-
-	// If word is complete (winningLetters == wordLetters.length), run gameEnds("win")
-
-	// If turns are less than 1, run gameEnds("lose")
 }
-
-
-
-// gameEnds(result)
-
-// Reset NumberOfTurns
-// Reset playedLetters array 
-
-// If result === win, 
-// display you win screen
-// Add one to win record
-// start over
-
-// If result === lose, 
-// display you lose screen
-// Add one to loose record
