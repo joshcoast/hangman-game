@@ -6,6 +6,8 @@
 
 .gamerunning .game-room {
 	display: block;
+	z-index: 1;
+  position: relative;
 }
 
 /*-- global --*/
@@ -18,7 +20,7 @@
 
 body {
 	background-color: #262626;
-	padding: 20px;
+	padding: 10px;
 	font-family: 'Ropa Sans', sans-serif;
 }
 
@@ -57,6 +59,19 @@ ul {
 	background: #262626;
 	font-weight: 700;
 	font-size: 20px;
+	position: relative;
+}
+
+.menu-bar::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background: url(../images/menu-bar-icons.svg) transparent center center no-repeat;
+  background-size: contain;
+  height: 44px;
+  width: 75px;
+  z-index: 0;
 }
 
 .menu-inner {
@@ -99,6 +114,42 @@ main {
 	padding: 20px;
 	border-radius: 0 0 20px 20px;
 	background-color: #aaaaaa;
+	position: relative;
+}
+
+.gamerunning main::before {
+	content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: url(../images/mac_hd.svg) transparent center center no-repeat;
+  background-size: contain;
+  height: 45px;
+	width: 100px;
+	z-index: 0;
+}
+
+.gamerunning main::after {
+	content: "";
+  position: absolute;
+  bottom: 10px;
+  right: 45px;
+  background: url(../images/trash.svg) transparent center center no-repeat;
+  background-size: contain;
+  height: 70px;
+	width: 45px;
+	z-index: 0;
+}
+
+@media only screen and (min-width: 1100px) {
+	.gamerunning main::before {
+		top: 35px;
+		right: 25px;
+	}
+	.gamerunning main::after {
+		bottom: 40px;
+		right: 55px;
+	}
 }
 
 /*-- intro screen --*/
@@ -150,7 +201,11 @@ main {
 
 .alert-message span {
 	text-transform: uppercase;
-	font-weight: 700;
+  font-weight: 700;
+  background: black;
+  color: white;
+  padding: 5px;
+	margin: 0 2px;
 }
 
 .score-box {
@@ -175,7 +230,7 @@ main {
 
 .game-window {
 	background: white;
-	max-width: 650px;
+	max-width: 640px;
 	border: 1px solid #262626;
 	padding: 5px;
 }
@@ -264,6 +319,12 @@ main {
 
 .gallows.image1.image2.image3.image4.image5.image6.image7 {
 	background-image: url(../images/hang/7.png)
+}
+
+@media only screen and (min-width: 640px) {
+	.gallows {
+		padding-top: 39%;
+	}
 }
 
 

@@ -1,4 +1,4 @@
-var wordList = ["eloquent", "javascript", "second", "edition"];
+var wordList = ["macintosh", "jobs", "computer", "waz", "thinkdifferent", "apple", "lisa", "appleii", "quadra", "powerbook", "iphone", "ipod", "ipad", "newton", "macbook","performa", "powermac", "imac", "ibook", "macmini", "macbookair", "iwatch", ];
 var wordInPlay;
 var wordInPlayLetters = [];
 var numberOfTurns = 8;
@@ -8,6 +8,13 @@ var loseRecord = 0;
 var winRecord = 0;
 var winningLetters = [];
 var winningMatch = [];
+
+//Sounds 
+var laugh = new Audio('assets/sounds/laugh.wav');
+var startup = new Audio('assets/sounds/startup2.wav');
+var single_click = new Audio('assets/sounds/single_click.wav');
+var moof = new Audio('assets/sounds/moof.wav');
+var temple = new Audio('assets/sounds/temple.wav');
 
 
 // Press Any Key To Start
@@ -21,8 +28,7 @@ document.onkeypress = function (event) {
 		intro.remove(1);
 		setBoard();
 	}
-	var audio = new Audio('assets/sounds/Startup2.wav');
-  audio.play();
+  startup.play();
 };
 
 // Setup Board
@@ -99,7 +105,8 @@ function gamePlay() {
 	}
 
 	function letterAlreadyPlayed() {
-		document.querySelector("#alertMessage").innerHTML = userGuess + " has already been played";
+		document.querySelector("#alertMessage").innerHTML = "Derp, <span>" + userGuess + "</span> has already been played.";
+		laugh.play();
 		console.log(userGuess + " has already been played -- letterAlreadyPlayed()");
 	}
 
@@ -114,6 +121,7 @@ function gamePlay() {
 	}
 
 	function correctGuess() {
+		single_click.play();
 		// Get the ul list that holds the word tiles
 		var letterTilesList = document.getElementById('letterTiles');
 		// Get an array of those list items so we can loop though and replace the _ with the userGuess
@@ -128,9 +136,6 @@ function gamePlay() {
 		if (winningMatch.toString() === wordInPlayLetters.toString()) {
 			gameWon();
 		}
-
-		// Split takes a sting makes into an array
-
 	}
 
 	function incorrectGuess() {
@@ -144,8 +149,9 @@ function gamePlay() {
 	function gameWon() {
 		document.onkeypress = undefined;
 		winRecord = winRecord + 1;
+		temple.play();
 		document.querySelector("#winRecord").innerHTML = winRecord;
-		document.querySelector("#alertMessage").innerHTML = "<p>You got it, the word was <span>" + wordInPlay + "</span>. <br> Winner Winner Chicken Dinner!</p>"
+		document.querySelector("#alertMessage").innerHTML = "<p>You got it, the word was <span>" + wordInPlay + "</span></p><p>Winner Winner Chicken Dinner!</p>"
 		setBoard();
 	}
 
@@ -153,9 +159,10 @@ function gamePlay() {
 		// Stop gamePlay()'s onkeypress from running
 		document.onkeypress = undefined;
 		loseRecord = loseRecord + 1;
+		moof.play();
 		document.querySelector("#loseRecord").innerHTML = loseRecord;
 		// Alert 
-		document.getElementById("alertMessage").innerHTML = "<p>The word was <span>" + wordInPlay + "</span>. <br>Loser Loser Such a Snoozer!</p>";
+		document.getElementById("alertMessage").innerHTML = "<p>The word was <span>" + wordInPlay + "</span></p> <p>Loser Loser Such a Snoozer!</p>";
 		console.log("here " + wordInPlay + " end");
 		setBoard();
 	}
