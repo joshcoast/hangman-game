@@ -1,29 +1,38 @@
 /*-- views --*/
+
 .gameintro .game-room {
 	display: none;
 }
+
 .gamerunning .game-room {
 	display: block;
 }
 
 /*-- global --*/
-*, *:before, *:after {
-  box-sizing: border-box;
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
 }
+
 body {
 	background-color: #262626;
 	padding: 20px;
 	font-family: 'Ropa Sans', sans-serif;
 }
+
 main {
 	background: white;
 }
+
 .box {
-	background:white;
+	background: white;
 	padding: 5px;
 	margin-bottom: 5px;
 	border: 2px solid black;
 }
+
 .box::after {
 	clear: both;
 	content: "";
@@ -31,46 +40,56 @@ main {
 }
 
 /*-- typography --*/
+
 h2 {
 	margin: 0;
 }
+
 ul {
 	padding: 0;
 	margin: 0;
 }
 
 /*-- Apple menu bar --*/
+
 .menu-bar {
 	border-bottom: 1px solid black;
 	background: #262626;
 	font-weight: 700;
+	font-size: 20px;
 }
+
 .menu-inner {
 	border-radius: 10px 10px 0 0;
 	background-color: #f7f7f7;
 	padding: 10px 20px;
 	height: 44px;
 }
+
 .menu-inner::after {
-  clear: both;
-  content: "";
-  display: table;
+	clear: both;
+	content: "";
+	display: table;
 }
+
 .menulinks {
 	margin: 0;
 	padding: 0;
 }
+
 .menulinks li {
 	display: block;
 	float: left;
 	margin: 0;
 	padding: 3px 5px 0 5px;
 }
+
 .menulinks li:first-child {
 	padding: 0 10px 0 0;
 }
+
 .apple-logo {
-	width: 15px;
+	width: 18px;
 	height: auto;
 }
 
@@ -94,6 +113,7 @@ main {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	font-size: 20px;
 	-moz-transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
@@ -104,7 +124,7 @@ main {
 	width: 50px;
 }
 
-/*-- Play screen --*/
+/*-- Game Screen --*/
 
 .count-down-box h2 {
 	font-size: 1rem;
@@ -136,9 +156,123 @@ main {
 .score-box {
 	display: flex;
 }
-.score-box > div {
+
+.score-box>div {
 	flex: 1 1 auto;
 }
+
+.score-box p {
+	font-size: 26px;
+	font-weight: 700;
+	margin: 0;
+	background-color: black;
+	color: white;
+	margin: 0 auto;
+	width: 40px;
+}
+
+/*-- Game Window --*/
+
+.game-window {
+	background: white;
+	max-width: 650px;
+	border: 1px solid #262626;
+	padding: 5px;
+}
+
+.title-bar {
+	background: linear-gradient( to bottom, #ffffff, #ffffff 50%, #040404 50%, #000000);
+	background-size: 100% 4px;
+	position: relative;
+}
+
+.title-bar h1 {
+	background: #ffffff;
+	display: block;
+	margin: 0 auto;
+	width: 120px;
+	font-size: 25px;
+}
+
+.close-box {
+	position: absolute;
+	left: 10px;
+	top: 2px;
+	width: 26px;
+	height: 26px;
+	background: white;
+	border: 2px solid black;
+	box-shadow: 0 0 0px 2px white;
+}
+
+.resize-box {
+	position: absolute;
+	right: 10px;
+	top: 2px;
+	width: 26px;
+	height: 26px;
+	background: white;
+	border: 2px solid black;
+	box-shadow: 0 0 0px 2px white;
+}
+
+.resize-box::after {
+	position: absolute;
+	content: "";
+	top: -2px;
+	left: -2px;
+	width: 18px;
+	height: 18px;
+	border: 2px solid black;
+}
+
+/*-- Gallows Image --*/
+
+.gallows {
+	background: url(../images/hang/0.png) transparent center center no-repeat;
+	background-size: cover;
+	height: 0;
+	padding-top: 70%;
+	border: 2px solid black;
+	margin-top: 5px;
+	box-shadow: inset 0px 0px 0px 4px white;
+}
+
+.gallows.image1 {
+	background-image: url(../images/hang/1.png)
+}
+
+.gallows.image1.image2 {
+	background-image: url(../images/hang/2.png)
+}
+
+.gallows.image1.image2.image3 {
+	background-image: url(../images/hang/3.png)
+}
+
+.gallows.image1.image2.image3.image4 {
+	background-image: url(../images/hang/4.png)
+}
+
+.gallows.image1.image2.image3.image4.image5 {
+	background-image: url(../images/hang/5.png)
+}
+
+.gallows.image1.image2.image3.image4.image5.image6 {
+	background-image: url(../images/hang/6.png)
+}
+
+.gallows.image1.image2.image3.image4.image5.image6.image7 {
+	background-image: url(../images/hang/7.png)
+}
+
+
+
+
+
+
+
+
 
 
 

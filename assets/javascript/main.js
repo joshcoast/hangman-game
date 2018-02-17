@@ -1,15 +1,13 @@
 var wordList = ["eloquent", "javascript", "second", "edition"];
 var wordInPlay;
 var wordInPlayLetters = [];
-var numberOfTurns = 5;
+var numberOfTurns = 8;
 var turnsTaken = 0;
 var playedLetters = [];
 var loseRecord = 0;
 var winRecord = 0;
 var winningLetters = [];
 var winningMatch = [];
-//var forTheWin = false;
-
 
 
 // Press Any Key To Start
@@ -36,11 +34,16 @@ function setBoard() {
 	playedLetters = [];
 	winningLetters = []
 	winningMatch = []
-	//forTheWin = false;
 
 	//Clear old Letter Tiles and Letters Played lists
 	removeChildElements(document.getElementById("letterTiles"));
 	removeChildElements(document.getElementById("playedLettersDisplay"));
+
+	//Clear Image classes 
+	var gallows = document.querySelector(".gallows");
+	for (var i = 1; i <= numberOfTurns; i++ ) {
+		gallows.classList.remove('image' + i);
+	}
 
 	// Randomly pic a new word form the wordList
 	wordInPlay = wordList[Math.floor(Math.random() * wordList.length)];
@@ -49,12 +52,12 @@ function setBoard() {
 	
 
 	// Separate wordInPlay letters into wordInPlayLetters array
-	for (var i = 0; i < wordInPlay.length; i++) {
-		wordInPlayLetters.push(wordInPlay.charAt(i));
+	for (var j = 0; j < wordInPlay.length; j++) {
+		wordInPlayLetters.push(wordInPlay.charAt(j));
 	}
 	
 	// Create the placeHolder tiles
-	for (var i = 0; i < wordInPlayLetters.length; i++) {
+	for (var k = 0; k < wordInPlayLetters.length; k++) {
 		var listItem = document.createElement("li");
 		var placeHolder = document.createTextNode("_");
 		listItem.appendChild(placeHolder);
@@ -132,6 +135,7 @@ function gamePlay() {
 
 	function incorrectGuess() {
 		turnsTaken = turnsTaken + 1;
+		document.querySelector(".gallows").classList.add('image' + turnsTaken);
 		if (turnsTaken === numberOfTurns) {
 			gamelost();
 		}
